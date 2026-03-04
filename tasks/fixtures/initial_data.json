@@ -1,0 +1,32 @@
+[
+  {
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+      "title": "Configurar ambiente no ASUS TUF",
+      "description": "Instalar Pyenv e configurar o projeto de onboarding.",
+      "created_at": "2026-03-01T10:00:00Z",
+      "is_completed": true
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 2,
+    "fields": {
+      "title": "Estudar HTMX e Alpine.js",
+      "description": "Entender como o hx-swap e o x-cloak funcionam na prática.",
+      "created_at": "2026-03-02T14:30:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+      "title": "Finalizar CRUD de Tasks",
+      "description": "Implementar a deleção com modal de confirmação do Alpine.",
+      "created_at": "2026-03-03T09:00:00Z",
+      "is_completed": false
+    }
+  }
+]

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block content %}
+    <h1 class="text-3xl font-bold text-blue-400 mb-8">Minhas Tasks</h1>
+
+    {% include 'partials/task_form.html' %}
+
+    <div id="task-list" class="space-y-4">
+        {% for task in tasks %}
+            {% include 'partials/task_item.html' %}
+        {% empty %}
+            <p class="text-slate-500 italic">Nenhuma tarefa encontrada no banco.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
