@@ -12,12 +12,10 @@
     <td class="p-4 max-w-0 w-full">
         <div class="flex flex-col">
             <span class="text-sm font-semibold truncate cursor-pointer hover:text-[#627BFF] transition-colors {% if task.is_completed %}line-through text-slate-400{% else %}text-slate-700{% endif %}"
-                  title="Detalhes da task"
                   hx-get="{% url 'task-detail' task.id %}"
                   hx-target="#modal-body"
                   @click="modalOpen = true"
-                  title="{{ task.title }}">
-                {{ task.title }}
+                  title="{{ task.title | capfirst }}"> {{ task.title | capfirst }}
             </span>
 
             {% if task.description %}
