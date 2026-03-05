@@ -1,1 +1,38 @@
-<p> {{ task.title }} <p>
+<tr id="task-{{ task.id }}" class="hover:bg-slate-50/80 transition-colors group">
+    <td class="p-4 text-center">
+        <input type="checkbox"
+               title="Marcar como concluída"
+               {% if task.is_completed %}checked{% endif %}
+               hx-post="{% url 'update-task' task.id %}"
+               hx-target="#task-{{ task.id }}"
+               hx-swap="outerHTML"
+               class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer transition-all">
+    </td>
+    <td class="p-4">
+        <div class="flex flex-col">
+            <span class="text-sm font-semibold {% if task.is_completed %}line-through text-slate-400{% else %}text-slate-700{% endif %}">
+                {{ task.title }}
+            </span>
+            {% if task.description %}
+            <span class="text-xs text-slate-400 mt-0.5">{{ task.description }}</span>
+            {% endif %}
+        </div>
+    </td>
+    <td class="p-4 text-right">
+        <div class="flex justify-end gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button hx-get="{% url 'edit-task' task.id %}"
+                    hx-target="#modal-body"
+                    @click="modalOpen = true"
+                    class="text-[#627BFF] hover:text-[#4d66e6] text-xs font-bold uppercase tracking-wider transition-colors duration-200">
+                Editar
+            </button>
+            <button hx-delete="{% url 'delete-task' task.id %}"
+                    hx-confirm="Deseja excluir '{{ task.title }}'?"
+                    hx-target="#task-{{ task.id }}"
+                    hx-swap="delete"
+                    class="text-red-400 hover:text-red-600 text-xs font-bold uppercase tracking-tight">
+                Excluir
+            </button>
+        </div>
+    </td>
+</tr>

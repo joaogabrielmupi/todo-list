@@ -1,15 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="text-3xl font-bold text-blue-400 mb-8">Minhas Tasks</h1>
+<div x-data="{ modalOpen: false }" @close-modal.window="modalOpen = false">
 
-    {% include 'partials/task_form.html' %}
-
-    <div id="task-list" class="space-y-4">
-        {% for task in tasks %}
-            {% include 'partials/task_item.html' %}
-        {% empty %}
-            <p class="text-slate-500 italic">Nenhuma tarefa encontrada no banco.</p>
-        {% endfor %}
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-slate-700">Minhas Tarefas</h1>
+        <button
+                hx-get="{% url 'create-task' %}"
+                hx-target="#modal-body"
+                @click="modalOpen = true"
+                class="bg-[#627BFF] hover:bg-[#4d66e6] text-white ... px-5 py-2.5 rounded-lg font-semibold shadow-sm transition-all flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
+            Nova Tarefa
+        </button>
     </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <table class="w-full text-left border-collapse">
+            <thead class="border-b border-slate-100 text-slate-400 text-xs uppercase font-semibold tracking-wider">
+                <tr>
+                    <th class="p-4 w-16">Status</th>
+                    <th class="p-4">Tarefa</th>
+                    <th class="p-4 text-right">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="task-table-body" class="divide-y divide-slate-700">
+                {% for task in tasks %}
+                    {% include 'partials/task_item.html' %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div x-show="modalOpen" x-cloak
+         class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
+        <div @click.away="modalOpen = false"
+             class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+            <div id="modal-body" class="p-8">
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

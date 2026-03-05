@@ -4,19 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onboarding | Todo-List</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>TaskSystem | Onboarding Mupi</title>
 
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="{% static 'js/htmx.min.js' %}"></script>
     <script defer src="{% static 'js/alpine.min.js' %}"></script>
 
     <style> [x-cloak] { display: none !important; } </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+<body class="bg-white text-slate-900 font-sans" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <div class="fixed inset-0 flex items-center justify-center -z-10 opacity-[0.03] pointer-events-none">
+        <img src="{% static 'images/logo.png' %}" class="w-[500px] md:w-[800px] object-contain">
+    </div>
 
-    <div class="container mx-auto max-w-2xl mt-12 px-4">
-        {% block content %}
-        {% endblock %}
+    <nav class="bg-[#627BFF] shadow-lg mb-8">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="{% static 'images/logo.png' %}"
+                     class="h-10 w-10 bg-white rounded-full p-1 shadow-sm">
+                <span class="text-white text-2xl font-bold tracking-tight">TaskSystem</span>
+            </div>
+            <div class="text-blue-100 text-sm font-medium">Painel de controle</div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto max-w-5xl px-6">
+        {% block content %}{% endblock %}
     </div>
 
 </body>
