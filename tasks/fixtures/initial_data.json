@@ -3,8 +3,9 @@
     "model": "tasks.task",
     "pk": 1,
     "fields": {
-      "title": "Configurar ambiente no ASUS TUF",
-      "description": "Instalar Pyenv e configurar o projeto de onboarding.",
+      "user": 1,
+      "title": "Configurar Pyenv no Ubuntu (ASUS TUF)",
+      "description": "Garantir que as versões do Python 3.11 e 3.12 estejam isoladas para o TaskSystem.",
       "created_at": "2026-03-01T10:00:00Z",
       "is_completed": true
     }
@@ -13,19 +14,263 @@
     "model": "tasks.task",
     "pk": 2,
     "fields": {
-      "title": "Estudar HTMX e Alpine.js",
-      "description": "Entender como o hx-swap e o x-cloak funcionam na prática.",
+      "user": 1,
+      "title": "Estudar hx-swap e x-cloak",
+      "description": "Entender transições suaves no HTMX e evitar o flash de conteúdo do Alpine.",
       "created_at": "2026-03-02T14:30:00Z",
-      "is_completed": false
+      "is_completed": true
     }
   },
   {
     "model": "tasks.task",
     "pk": 3,
     "fields": {
-      "title": "Finalizar CRUD de Tasks",
-      "description": "Implementar a deleção com modal de confirmação do Alpine.",
+      "user": 1,
+      "title": "Planejar Terrário da Jiboia Arco-Íris da Caatinga",
+      "description": "Pesquisar dimensões ideais e sistemas de aquecimento para o setup no Herpetosys.",
       "created_at": "2026-03-03T09:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "title": "Revisar exercícios de C++ para Maratona",
+      "description": "Praticar problemas de Grafos e Programação Dinâmica no Codeforces.",
+      "created_at": "2026-03-03T11:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "title": "Organizar finanças da viagem com a Tatu",
+      "description": "Verificar o saldo da LCI e FIIs para meta de 20k BRL.",
+      "created_at": "2026-03-04T08:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 6,
+    "fields": {
+      "user": 1,
+      "title": "Implementar logic de 'Surebet' no Dashboard",
+      "description": "Criar view para calcular lucro mensal automatizado das apostas de arbitragem.",
+      "created_at": "2026-03-04T13:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 7,
+    "fields": {
+      "user": 1,
+      "title": "Trabalho de Compiladores - IFNMG",
+      "description": "Finalizar a análise léxica do projeto acadêmico.",
+      "created_at": "2026-03-05T14:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "title": "Comprar substrato para King Snake",
+      "description": "Verificar disponibilidade em petshops de Janaúba ou comprar online.",
+      "created_at": "2026-03-05T15:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 9,
+    "fields": {
+      "user": 1,
+      "title": "Instalar Hogwarts Legacy no Ubuntu",
+      "description": "Testar performance via Proton na RTX 4050 do ASUS TUF.",
+      "created_at": "2026-03-05T18:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 10,
+    "fields": {
+      "user": 1,
+      "title": "Refatorar Models do Herpetosys",
+      "description": "Adicionar campos de umidade e temperatura histórica para os répteis.",
+      "created_at": "2026-03-06T09:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 11,
+    "fields": {
+      "user": 1,
+      "title": "Checkup mensal do Chevrolet",
+      "description": "Calibrar pneus e verificar nível do óleo/água.",
+      "created_at": "2026-03-06T10:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 12,
+    "fields": {
+      "user": 1,
+      "title": "Atualizar LinkedIn com desafio Axur",
+      "description": "Postar sobre o desafio técnico de Java e AWS S3 realizado em fevereiro.",
+      "created_at": "2026-03-06T14:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 13,
+    "fields": {
+      "user": 1,
+      "title": "Treinar perna e cardio",
+      "description": "Focar na constância para manter o condicionamento físico.",
+      "created_at": "2026-03-07T07:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 14,
+    "fields": {
+      "user": 1,
+      "title": "Configurar Backup no iPhone 15",
+      "description": "Garantir que as fotos dos setups de herpetocultura estejam no iCloud.",
+      "created_at": "2026-03-07T11:00:00Z",
+      "is_completed": true
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 15,
+    "fields": {
+      "user": 1,
+      "title": "Estudar Spring Security",
+      "description": "Comparar o fluxo de autenticação do Spring com o Allauth do Django.",
+      "created_at": "2026-03-08T15:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 16,
+    "fields": {
+      "user": 1,
+      "title": "Limpar Desktop (Intel G4560)",
+      "description": "Remover poeira e trocar pasta térmica para evitar thermal throttling.",
+      "created_at": "2026-03-08T17:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 17,
+    "fields": {
+      "user": 1,
+      "title": "Jantar com a Tatu",
+      "description": "Comemorar o progresso no onboarding da Mupi.",
+      "created_at": "2026-03-09T19:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 18,
+    "fields": {
+      "user": 1,
+      "title": "Ler documentação do Django Rest Framework",
+      "description": "Preparar terreno para criar uma API mobile para o Herpetosys.",
+      "created_at": "2026-03-10T08:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 19,
+    "fields": {
+      "user": 1,
+      "title": "Revisar LCI do BRB",
+      "description": "Verificar data de vencimento e reinvestimento automático.",
+      "created_at": "2026-03-10T10:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 20,
+    "fields": {
+      "user": 1,
+      "title": "Estudar Algoritmos de Ordenação em C",
+      "description": "Revisar QuickSort e MergeSort para provas do IFNMG.",
+      "created_at": "2026-03-11T14:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 21,
+    "fields": {
+      "user": 1,
+      "title": "Configurar SSH no Ubuntu",
+      "description": "Facilitar o acesso remoto entre o notebook e o desktop.",
+      "created_at": "2026-03-11T16:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 22,
+    "fields": {
+      "user": 1,
+      "title": "Comprar presentes de aniversário",
+      "description": "Pesquisar algo especial para a Tatu e família.",
+      "created_at": "2026-03-12T09:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 23,
+    "fields": {
+      "user": 1,
+      "title": "Finalizar CSS do TaskSystem",
+      "description": "Ajustar o hover das linhas da tabela e o gradiente da navbar.",
+      "created_at": "2026-03-12T13:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 24,
+    "fields": {
+      "user": 1,
+      "title": "Pesquisar sobre Ball Pythons",
+      "description": "Entender as diferentes fases (morphs) disponíveis no mercado brasileiro.",
+      "created_at": "2026-03-13T10:00:00Z",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 25,
+    "fields": {
+      "user": 1,
+      "title": "Migrar banco de dados SQLite para PostgreSQL",
+      "description": "Preparar o ambiente de produção para o Herpetosys.",
+      "created_at": "2026-03-14T11:00:00Z",
       "is_completed": false
     }
   }

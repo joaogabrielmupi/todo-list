@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-16">
+    <div class="bg-white p-10 rounded-3xl shadow-2xl border border-slate-100">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-extrabold text-slate-800">Bem-vindo!</h2>
+            <p class="text-slate-500 mt-2">Acesse suas tarefas agora mesmo.</p>
+        </div>
+
+        <form method="POST" action="{% url 'account_login' %}" class="space-y-5">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="bg-red-50 text-red-600 p-3 rounded-lg text-sm font-medium">
+                    Dados incorretos.
+                </div>
+            {% endif %}
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">E-mail ou Usuário</label>
+                <input type="text" name="login" required class="w-full border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-[#627BFF] outline-none transition-all">
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1">Senha</label>
+                <input type="password" name="password" required class="w-full border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-[#627BFF] outline-none transition-all">
+            </div>
+
+            <button type="submit" class="w-full bg-[#627BFF] text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-blue-200 hover:bg-[#4d66e6] transition-all transform hover:-translate-y-0.5">
+                Entrar
+            </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-100 text-center">
+            <p class="text-slate-500">Ainda não tem conta?
+                <a href="{% url 'account_signup' %}" class="text-[#627BFF] font-bold hover:underline">Crie uma conta aqui</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

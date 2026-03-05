@@ -19,12 +19,32 @@
 
     <nav class="bg-[#627BFF] shadow-lg mb-8">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <img src="{% static 'images/logo.png' %}"
-                     class="h-10 w-10 bg-white rounded-full p-1 shadow-sm">
-                <span class="text-white text-2xl font-bold tracking-tight">TaskSystem</span>
+            <a href="{% url 'index' %}" class="flex items-center gap-3">
+                <img src="{% static 'images/logo.png' %}" class="h-10 w-10 bg-white rounded-full p-1 shadow-sm">
+                <span class="text-white text-2xl font-bold tracking-tight italic">TaskSystem</span>
+            </a>
+
+            <div class="flex items-center gap-4">
+                {% if user.is_authenticated %}
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white font-bold border border-white/30 text-lg">
+                            {{ user.username.0|upper }}
+                        </div>
+
+                        <form method="post" action="{% url 'account_logout' %}" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" class="text-sm text-white font-medium transition-colors">
+                                Sair
+                            </button>
+                        </form>
+                    </div>
+                {% else %}
+                    <a href="{% url 'account_login' %}" class="text-white font-medium hover:text-blue-100">Entrar</a>
+                    <a href="{% url 'account_signup' %}" class="bg-white text-[#627BFF] px-4 py-2 rounded-lg font-bold shadow-sm hover:bg-blue-50 transition-all">
+                        Cadastrar
+                    </a>
+                {% endif %}
             </div>
-            <div class="text-blue-100 text-sm font-medium">Painel de controle</div>
         </div>
     </nav>
 

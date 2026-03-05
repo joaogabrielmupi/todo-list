@@ -1,0 +1,46 @@
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+    <table class="w-full text-left border-collapse">
+        <thead class="border-b border-slate-100 text-slate-400 text-xs uppercase font-semibold tracking-wider bg-slate-50">
+            <tr>
+                <th class="p-4 w-16">Status</th>
+                <th class="p-4">Tarefa</th>
+                <th class="p-4 text-right">Ações</th>
+            </tr>
+        </thead>
+        <tbody id="task-table-body" class="divide-y divide-slate-100">
+            {% for task in page_object %}
+                {% include 'partials/task_item.html' %}
+            {% empty %}
+                <tr>
+                    <td colspan="3" class="p-8 text-center text-slate-400">Nenhuma tarefa encontrada.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-6 flex items-center justify-between px-2">
+    <span class="text-sm text-slate-500">
+        Página <strong class="text-slate-700">{{ page_object.number }}</strong> de {{ page_object.paginator.num_pages }}
+    </span>
+
+    <div class="flex gap-2">
+        {% if page_object.has_previous %}
+            <button hx-get="?page={{ page_object.previous_page_number }}"
+                    hx-target="#task-container"
+                    hx-swap="innerHTML"
+                    class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                Anterior
+            </button>
+        {% endif %}
+
+        {% if page_object.has_next %}
+            <button hx-get="?page={{ page_object.next_page_number }}"
+                    hx-target="#task-container"
+                    hx-swap="innerHTML"
+                    class="px-4 py-2 bg-[#627BFF] text-white rounded-lg text-sm font-bold shadow-md hover:bg-[#4d66e6] transition-all">
+                Próxima
+            </button>
+        {% endif %}
+    </div>
+</div>
