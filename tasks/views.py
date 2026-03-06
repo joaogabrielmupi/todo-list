@@ -4,6 +4,14 @@ from tasks.models import Task
 from .forms import TaskForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
 def index(request):
@@ -57,11 +65,24 @@ def edit_task(request, pk):
 
     return render(request, 'partials/task_modal_content.html', {'task' : task, 'modal_title': 'Editar Tarefa'})
 
+'''
 @login_required
 def delete_task(request, pk):
     task = get_object_or_404(Task, pk=pk)
     task.delete()
     return HttpResponse("")
+'''
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
+    model = Task
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return HttpResponse("")
+
+    def post(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
 
 @login_required
 def update_task_status(request, pk):
