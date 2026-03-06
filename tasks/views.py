@@ -53,6 +53,7 @@ def create_task(request):
         'modal_title': 'Nova Tarefa'
     })
 
+'''
 @login_required
 def edit_task(request, pk):
     task = get_object_or_404(Task, pk=pk)
@@ -64,6 +65,23 @@ def edit_task(request, pk):
         return HttpResponse("Erro ao atualizar", status=400)
 
     return render(request, 'partials/task_modal_content.html', {'task' : task, 'modal_title': 'Editar Tarefa'})
+'''
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
+    model = Task
+    fields = [
+        'title',
+        'description',
+    ]
+    template_name = 'partials/task_modal_content.html'
+
+    def form_valid(self, form):
+        task = form.save()
+        return render(self.request, 'partials/task_item.html', {'task' : task})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['modal_title'] = 'Editar Tarefa'
+        return context
 
 '''
 @login_required
@@ -72,7 +90,6 @@ def delete_task(request, pk):
     task.delete()
     return HttpResponse("")
 '''
-
 class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
 
@@ -91,6 +108,7 @@ def update_task_status(request, pk):
     task.save()
 
     return render(request, 'partials/task_item.html', {'task' : task})
+
 
 @login_required
 def task_detail(request, pk):
