@@ -1,3 +1,5 @@
+from urllib import request
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from tasks.models import Task
@@ -13,6 +15,7 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+'''
 @login_required
 def index(request):
     tasks = Task.objects.filter(user=request.user).order_by('-id')
@@ -25,7 +28,26 @@ def index(request):
         return render(request, 'partials/task_list.html', {'page_object': page_object})
 
     return render(request, 'index.html', {'page_object': page_object})
+'''
 
+
+class TaskListView(LoginRequiredMixin, ListView):
+    model = Task
+    paginate_by = 8
+    context_object_name = 'page_object'
+
+    def get_queryset(self, *args, **kwargs):
+        return Task.objects.filter(user=self.request.user).order_by('-id')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_object'] = context['page_obj']
+        return context
+
+    def get_template_names(self):
+        if self.request.headers.get('HX-Request'):
+           return ['partials/task_list.html']
+        return ['index.html']
 
 '''
 @login_required
