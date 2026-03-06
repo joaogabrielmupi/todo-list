@@ -1,6 +1,9 @@
 <tr id="task-{{ task.id }}" class="hover:bg-slate-50/80 transition-colors group border-b border-slate-100 last:border-0">
     <td class="p-4 w-16 text-center">
         <input type="checkbox"
+               id="task-check-{{ task.id }}"
+               name="task_status_{{ task.id }}"
+               autocomplete="off"
                title="Marcar como concluída"
                {% if task.is_completed %}checked{% endif %}
                hx-post="{% url 'update-task' task.id %}"
