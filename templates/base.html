@@ -28,7 +28,7 @@
                 {% if user.is_authenticated %}
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white font-bold border border-white/30 text-lg">
-                            {{ user.username.0|upper }}
+                            {{ user.username.0 | upper }}
                         </div>
 
                         <form method="post" action="{% url 'account_logout' %}" class="inline">
@@ -47,7 +47,6 @@
             </div>
         </div>
     </nav>
-
     <div class="container mx-auto max-w-5xl px-6">
         {% block content %}{% endblock %}
     </div>
