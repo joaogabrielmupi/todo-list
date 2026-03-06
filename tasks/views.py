@@ -26,6 +26,7 @@ def index(request):
 
     return render(request, 'index.html', {'page_object': page_object})
 
+'''
 @login_required
 def create_task(request):
     if request.method == 'POST':
@@ -52,7 +53,28 @@ def create_task(request):
         'form': form,
         'modal_title': 'Nova Tarefa'
     })
+'''
+class TaskCreateView(LoginRequiredMixin, CreateView):
+    model = Task
+    fields = [
+        'title',
+        'description',
+    ]
+    template_name = 'partials/task_modal_content.html'
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        task = form.save()
+
+        response = render(self.request, 'partials/task_modal_content.html', {'task' : task})
+        response['HX-Trigger'] = 'close-modal'
+        response['HX-Refresh'] = 'true'
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['modal_title'] = 'Nova Tarefa'
+        return context
 '''
 @login_required
 def edit_task(request, pk):
