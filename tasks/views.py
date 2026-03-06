@@ -26,6 +26,7 @@ def index(request):
 
     return render(request, 'index.html', {'page_object': page_object})
 
+
 '''
 @login_required
 def create_task(request):
@@ -75,6 +76,8 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['modal_title'] = 'Nova Tarefa'
         return context
+
+
 '''
 @login_required
 def edit_task(request, pk):
@@ -105,6 +108,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
         context['modal_title'] = 'Editar Tarefa'
         return context
 
+
 '''
 @login_required
 def delete_task(request, pk):
@@ -132,7 +136,16 @@ def update_task_status(request, pk):
     return render(request, 'partials/task_item.html', {'task' : task})
 
 
+'''
 @login_required
 def task_detail(request, pk):
     task = get_object_or_404(Task, pk=pk,  user=request.user)
     return render(request, 'partials/task_detail.html', {'task' : task})
+'''
+class TaskDetailView(LoginRequiredMixin, DetailView):
+    model = Task
+    template_name = 'partials/task_detail.html'
+    context_object_name = 'task'
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
