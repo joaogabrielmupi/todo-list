@@ -14,6 +14,7 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 '''
 @login_required
@@ -37,7 +38,26 @@ class TaskListView(LoginRequiredMixin, ListView):
     context_object_name = 'page_object'
 
     def get_queryset(self, *args, **kwargs):
-        return Task.objects.filter(user=self.request.user).order_by('-id')
+        queryset = Task.objects.filter(user=self.request.user).order_by('-id')
+
+        q = self.request.GET.get('q')
+        status = self.request.GET.get('status')
+        date = self.request.GET.get('date')
+
+        if q:
+            queryset = queryset.filter(
+                Q(title__icontains=q) | Q(description__icontains=q)
+            )
+
+        if status == 'completed':
+            queryset = queryset.filter(is_completed=True)
+        elif status == 'incompleted':
+            queryset = queryset.filter(is_completed=False)
+
+        if date:
+            queryset = queryset.filter(created_at__date=date)
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
